@@ -23,14 +23,22 @@ export const useCartStore = defineStore('cart', {
   },
 
   getters: {
-    totalSum (state)  {
+    totalSum(state) {
       let sum = 0;
       state.cartItems.forEach(item => {
         sum += item.price * item.num;
       });
       return sum;
     }
-
+    /*** reduce method:
+     * getters: {
+     *   totalSum(state) {
+     * return state.cartProducts.reduce((total, item) => {
+     * return total + item.price * item.num;
+     * }, 0);
+     * }
+    },
+     */
   },
 
   actions: {
@@ -44,8 +52,8 @@ export const useCartStore = defineStore('cart', {
         // 1.2 购物车没有的情况
         this.cartItems.push({
           id: item.id,
-          price : item.price,
-          title : item.title,
+          price: item.price,
+          title: item.title,
           num: 1
         })
       }
